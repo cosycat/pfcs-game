@@ -47,6 +47,14 @@ public class ScoreTracker : MonoBehaviour
         }
     }
 
+	public void OpenMainMenu() {
+        try {
+            SceneManager.LoadScene(mainMenuScene);
+        } catch (Exception ex) {
+            SceneManager.LoadScene(0);
+        }
+	}
+
     public void LoadGameOver()
     {
         try {
