@@ -969,9 +969,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuScene: 0
   firstPlayScene: 1
-  lastPlayScene: 2
-  highscoreScene: 3
-  gameOverScene: 4
+  lastPlayScene: 3
+  highscoreScene: 4
+  gameOverScene: 5
   HUD: {fileID: 1193066164}
   timerText: {fileID: 1193066163}
 --- !u!114 &1193066168

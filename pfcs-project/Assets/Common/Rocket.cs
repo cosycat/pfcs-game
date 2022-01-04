@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 
 public class Rocket : Gravity
@@ -8,7 +9,6 @@ public class Rocket : Gravity
     public float accForward = 1f;
     public float accBackward = 0.1f;
 	public GameObject goal;
-
 
     // Update is called once per frame
     void FixedUpdate()
@@ -46,6 +46,7 @@ public class Rocket : Gravity
         }
         
         Debug.DrawLine(transform.position, transform.position + Speed * 10, Color.white);
+        Debug.DrawLine(transform.position, goal.transform.position, Color.green);
         
         Speed += acceleration * Time.fixedDeltaTime;
 

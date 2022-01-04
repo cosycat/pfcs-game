@@ -11,21 +11,34 @@ public class Gravity : MonoBehaviour
     public float mass = 50;
     [SerializeField]
     private Vector3 speed = Vector3.zero;
-    public Vector3 Speed
+
+    protected Vector3 Speed
     {
         get => speed;
         set => speed = value;
     }
+    
+    public GameObject rotCenter;
 
     private List<Gravity> _otherPlanets;
-
-    
 
     // Start is called before the first frame update
     protected void Start()
     {
+        FindPlanets();
+        if (rotCenter == null) return;
+        var distance = rotCenter.transform.position - transform.position;
+        var force = G * mass * rotCenter.GetComponent<Gravity>().mass /
+                        Mathf.Pow(distance.magnitude, 2);
+        var omega = Mathf.Sqrt(force / (distance.magnitude * mass));
+        speed = new Vector3(distance.z, 0, - distance.x).normalized * distance.magnitude * omega;
+    }
+
+    protected void FindPlanets()
+    {
         _otherPlanets = FindObjectsOfType<Gravity>().ToList();
         _otherPlanets.Remove(this);
+        
     }
 
     private void FixedUpdate()
