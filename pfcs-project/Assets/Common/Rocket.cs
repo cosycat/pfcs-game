@@ -63,10 +63,9 @@ public class Rocket : MonoBehaviour
 		// TODO: Load next level, or game over
 		}
 		else
-		{
-			Debug.Log("Game Over");
-			// TODO: Game over
-		}
+        {
+            ScoreTracker.Instance.LoadGameOver();
+        }
 	}
 
 
