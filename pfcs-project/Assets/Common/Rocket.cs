@@ -59,7 +59,7 @@ public class Rocket : MonoBehaviour
 	{
 		if(other.gameObject == goal)
 		{
-			Debug.Log("Goal!");
+			ScoreTracker.Instance.LoadNextLevel();
 		// TODO: Load next level, or game over
 		}
 		else
