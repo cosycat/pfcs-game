@@ -22,7 +22,7 @@ public class ScoreTracker : MonoBehaviour
     public int firstPlayScene = 1;
     public int lastPlayScene = 2;
     public int highscoreScene = 3;
-    public int gameOverScene = 4;
+    public int gameOverScene = -1;
     
     private GameStatus gameStatus = GameStatus.MENU;
     public GameStatus GameStatus {
@@ -37,6 +37,15 @@ public class ScoreTracker : MonoBehaviour
     }
     
     public float DelayedStartPerLevel => 0.5f;
+    
+    public void LoadNextLevel() {
+        try {
+            Debug.Log(SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        } catch (Exception ex) {
+            SceneManager.LoadScene(0);
+        }
+    }
     
     /* TIMER */
 
