@@ -49,7 +49,7 @@ public class Rocket : MonoBehaviour
             transform.Rotate(1, 0, 0, Space.Self);
         }
         
-        Debug.DrawLine(transform.position, transform.position + speed * 10);
+        Debug.DrawLine(transform.position, transform.position + speed * 10, Color.white);
         
         speed += acceleration * Time.fixedDeltaTime;
         transform.position += speed ;
