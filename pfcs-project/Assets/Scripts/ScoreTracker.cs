@@ -47,7 +47,9 @@ public class ScoreTracker : MonoBehaviour
         }
     }
 
-	public void OpenMainMenu() {
+	public void OpenMainMenu()
+    {
+        GameStatus = GameStatus.MENU;
         try {
             SceneManager.LoadScene(mainMenuScene);
         } catch (Exception ex) {
@@ -155,6 +157,14 @@ public class ScoreTracker : MonoBehaviour
                 }
             } else if (GameStatus == GameStatus.MENU) {
                 timerText.text = "<mark=#a1a1a1aa>Time: 00:00</mark>"; // TODO: better formatting
+            }
+        }
+
+        if (GameStatus == GameStatus.PLAYING)
+        {
+            if (Input.GetButtonDown("Cancel"))
+            {
+                OpenMainMenu();
             }
         }
     }
