@@ -46,6 +46,16 @@ public class ScoreTracker : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }
+
+    public void LoadGameOver()
+    {
+        try {
+            Debug.Log(SceneManager.GetSceneByBuildIndex(gameOverScene));
+            SceneManager.LoadScene(gameOverScene);
+        } catch (Exception ex) {
+            SceneManager.LoadScene(0);
+        }
+    }
     
     /* TIMER */
 
