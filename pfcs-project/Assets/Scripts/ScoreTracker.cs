@@ -158,13 +158,13 @@ public class ScoreTracker : MonoBehaviour
         }
         if (newStatus != GameStatus.PLAYING) {
             HUD.gameObject.SetActive(false);
-        }/*
-        if (newStatus == GameStatus.HIGHSCORE) {
-            ShowHighscore();
         }
-        if (newStatus != GameStatus.HIGHSCORE) {
-            HideHighscore();
-        }*/
+        // if (newStatus == GameStatus.HIGHSCORE) {
+        //     ShowHighscore();
+        // }
+        // if (newStatus != GameStatus.HIGHSCORE) {
+        //     HideHighscore();
+        // }
     }
 
     private void OnActiveSceneChanged(Scene arg0, Scene arg1) {

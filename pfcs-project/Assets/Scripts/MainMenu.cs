@@ -16,6 +16,14 @@ public class MainMenu : MonoBehaviour {
         Application.Quit();
     }
 
+
+    public void ResetHighscore()
+    {
+        Debug.Log("ResetHighscore");
+        ScoreTracker.Instance.Higscore = -1;
+    }
+    
+
     private void Update() {
         if (Input.GetButtonDown("Submit")) {
             PlayGame();

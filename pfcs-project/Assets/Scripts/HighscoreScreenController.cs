@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 public class HighscoreScreenController : MonoBehaviour {
 
@@ -11,8 +12,8 @@ public class HighscoreScreenController : MonoBehaviour {
     /* HIGHSCORE */
 
     [SerializeField] private Canvas highscoreScreen;
-    [SerializeField] private Text highscoreText;
-    [SerializeField] private Text totalHighscoreText;
+    [SerializeField] private TextMeshProUGUI yourScoreText;
+    [SerializeField] private TextMeshProUGUI totalHighscoreText;
 
 
     public string CurrentScoreAsText {
@@ -24,17 +25,24 @@ public class HighscoreScreenController : MonoBehaviour {
     }
 
     public void ShowHighscore() {
-        highscoreText.text = "Your Time:\n" + CurrentScoreAsText;
+        yourScoreText.text = "Your Time:\n" + CurrentScoreAsText;
+        Debug.Log("ScoreTracker.Instance.GameStatus = " + ScoreTracker.Instance.GameStatus);
+        Debug.Log("CurrentScore = " + CurrentScore);
+        
+        float lastHighscore = ScoreTracker.Instance.Higscore;
+        Debug.Log("lastHighscore = " + lastHighscore);
 
-        float savedScore = ScoreTracker.Instance.Higscore;
-        if (savedScore < 0) {
+        if (lastHighscore <= 0) {
+            // First time played
             ScoreTracker.Instance.Higscore = CurrentScore;
             totalHighscoreText.text = "NEW HIGHSCORE!";
-        } else if (savedScore > CurrentScore) {
-            totalHighscoreText.text = "NEW HIGHSCORE!\nPrevious Highscore: " + ScoreTracker.GetTimeInNiceFormat(savedScore);
+        } else if (lastHighscore > CurrentScore) {
+            // Beat last highscore
+            totalHighscoreText.text = "NEW HIGHSCORE!\nPrevious Highscore: " + ScoreTracker.GetTimeInNiceFormat(lastHighscore);
             ScoreTracker.Instance.Higscore = CurrentScore;
         } else {
-            totalHighscoreText.text = "Best Time:\n" + ScoreTracker.GetTimeInNiceFormat(savedScore);
+            // No new Highscore
+            totalHighscoreText.text = "Best Time:\n" + ScoreTracker.GetTimeInNiceFormat(lastHighscore);
         }
         highscoreScreen.gameObject.SetActive(true);
     }
