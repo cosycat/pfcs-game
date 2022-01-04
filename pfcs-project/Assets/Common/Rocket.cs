@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rocket : MonoBehaviour
+public class Rocket : Gravity
 {
-    private Vector3 speed = new Vector3(0, 0, 0);
+    // private Vector3 speed = new Vector3(0, 0, 0);
     public float accForward = 1f;
     public float accBackward = 0.1f;
 	public GameObject goal;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 acceleration = new Vector3(0, 0, 0);
         Vector3 forward = transform.rotation * Vector3.forward;
@@ -49,10 +45,12 @@ public class Rocket : MonoBehaviour
             transform.Rotate(1, 0, 0, Space.Self);
         }
         
-        Debug.DrawLine(transform.position, transform.position + speed * 10, Color.white);
+        Debug.DrawLine(transform.position, transform.position + Speed * 10, Color.white);
         
-        speed += acceleration * Time.fixedDeltaTime;
-        transform.position += speed ;
+        Speed += acceleration * Time.fixedDeltaTime;
+
+        UpdateGravitySpeed();
+        ApplySpeed();
     }
 
 	void OnTriggerEnter(Collider other)
