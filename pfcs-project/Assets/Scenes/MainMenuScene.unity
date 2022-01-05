@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.016242249, g: 0.014724811, b: 0.013898854, a: 1}
+  m_IndirectSpecularColor: {r: 0.016243907, g: 0.014724376, b: 0.013899613, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1105,9 +1105,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuScene: 0
   firstPlayScene: 1
-  lastPlayScene: 3
-  highscoreScene: 4
-  gameOverScene: 5
+  lastPlayScene: 4
+  highscoreScene: 5
+  gameOverScene: 6
   HUD: {fileID: 1193066164}
   timerText: {fileID: 1193066163}
 --- !u!114 &1193066168
