@@ -7,6 +7,9 @@ using UnityEngine;
 public class Rocket : Gravity
 {
     private bool _isAccelerating = false;
+
+    private String rocketSoundName = "RocketSound";
+    
     public bool IsAccelerating
     {
         get => _isAccelerating;
@@ -17,10 +20,12 @@ public class Rocket : Gravity
                 case true when !value:
                     // Stopped accelerating
                     fireParticleSystem.Stop();
+                    AudioManager.Instance.StopSound(rocketSoundName);
                     break;
                 case false when value:
                     // Started accelerating
                     fireParticleSystem.Play();
+                    AudioManager.Instance.PlaySound(rocketSoundName);
                     break;
             }
 
