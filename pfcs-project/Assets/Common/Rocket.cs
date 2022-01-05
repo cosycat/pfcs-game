@@ -31,7 +31,7 @@ public class Rocket : Gravity
     // private Vector3 speed = new Vector3(0, 0, 0);
     public float accForward = 1f;
     public float accBackward = 0.1f;
-  	public GameObject goal;
+	  public GameObject goal;
 
     [SerializeField] private ParticleSystem fireParticleSystem;
 
