@@ -8,7 +8,10 @@ public class Rocket : Gravity
     // private Vector3 speed = new Vector3(0, 0, 0);
     public float accForward = 1f;
     public float accBackward = 0.1f;
-	public GameObject goal;
+  	public GameObject goal;
+
+    [SerializeField] private ParticleSystem fireParticleSystem;
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -19,11 +22,21 @@ public class Rocket : Gravity
         if (Input.GetKey(KeyCode.W))
         {
             acceleration += forward * accForward;
+            if (!fireParticleSystem.isPlaying)
+            {
+                fireParticleSystem.Play();
+            }
         }
-
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             acceleration += -forward * accBackward;
+        }
+        else
+        {
+            if (fireParticleSystem.isPlaying)
+            {
+                fireParticleSystem.Stop();
+            }
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
