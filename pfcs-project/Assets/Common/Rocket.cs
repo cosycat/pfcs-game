@@ -40,6 +40,7 @@ public class Rocket : Gravity
     {
         var main = fireParticleSystem.main;
         main.startDelay = 0;
+        // fireParticleSystem.Stop();
     }
 
     // Update is called once per frame
