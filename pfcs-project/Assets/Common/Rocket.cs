@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class Rocket : Gravity
 {
+    private String rocketSoundName = "RocketSound";
+
     private bool _isAccelerating = false;
 
-    private String rocketSoundName = "RocketSound";
-    
     public bool IsAccelerating
     {
         get => _isAccelerating;
@@ -30,6 +30,31 @@ public class Rocket : Gravity
             }
 
             _isAccelerating = value;
+        }
+    }
+    
+    private bool _isBreaking = false;
+
+    public bool IsBreaking
+    {
+        get => _isBreaking;
+        private set
+        {
+            switch (_isBreaking)
+            {
+                case true when !value:
+                    // Stopped accelerating
+                    // fireParticleSystem.Stop();
+                    AudioManager.Instance.StopSound(rocketSoundName);
+                    break;
+                case false when value:
+                    // Started accelerating
+                    // fireParticleSystem.Play();
+                    AudioManager.Instance.PlaySound(rocketSoundName);
+                    break;
+            }
+
+            _isBreaking = value;
         }
     }
 
@@ -58,15 +83,18 @@ public class Rocket : Gravity
         {
             acceleration += forward * accForward;
             IsAccelerating = true;
+            IsBreaking = false;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             acceleration += -forward * accBackward;
             IsAccelerating = false;
+            IsBreaking = true;
         }
         else
         {
             IsAccelerating = false;
+            IsBreaking = false;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
