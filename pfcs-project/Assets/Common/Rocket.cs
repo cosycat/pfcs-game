@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 
 public class Rocket : Gravity
@@ -7,7 +8,8 @@ public class Rocket : Gravity
     // private Vector3 speed = new Vector3(0, 0, 0);
     public float accForward = 1f;
     public float accBackward = 0.1f;
-	public GameObject goal;
+	  public GameObject goal;
+
 
     [SerializeField] private ParticleSystem fireParticleSystem;
 
@@ -58,6 +60,7 @@ public class Rocket : Gravity
         }
         
         Debug.DrawLine(transform.position, transform.position + Speed * 10, Color.white);
+        Debug.DrawLine(transform.position, goal.transform.position, Color.green);
         
         Speed += acceleration * Time.fixedDeltaTime;
 
