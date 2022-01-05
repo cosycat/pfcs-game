@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
@@ -5,6 +6,26 @@ using UnityEngine;
 
 public class Rocket : Gravity
 {
+    private bool _isAccelerating = false;
+    public bool IsAccelerating
+    {
+        get => _isAccelerating;
+        private set
+        {
+            switch (_isAccelerating)
+            {
+                case true when !value:
+                    fireParticleSystem.Stop();
+                    break;
+                case false when value:
+                    fireParticleSystem.Play();
+                    break;
+            }
+
+            _isAccelerating = value;
+        }
+    }
+
     // private Vector3 speed = new Vector3(0, 0, 0);
     public float accForward = 1f;
     public float accBackward = 0.1f;
@@ -12,6 +33,11 @@ public class Rocket : Gravity
 
     [SerializeField] private ParticleSystem fireParticleSystem;
 
+    private void Awake()
+    {
+        var main = fireParticleSystem.main;
+        main.startDelay = 0;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -22,21 +48,16 @@ public class Rocket : Gravity
         if (Input.GetKey(KeyCode.W))
         {
             acceleration += forward * accForward;
-            if (!fireParticleSystem.isPlaying)
-            {
-                fireParticleSystem.Play();
-            }
+            IsAccelerating = true;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             acceleration += -forward * accBackward;
+            IsAccelerating = false;
         }
         else
         {
-            if (fireParticleSystem.isPlaying)
-            {
-                fireParticleSystem.Stop();
-            }
+            IsAccelerating = false;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
