@@ -15,9 +15,11 @@ public class Rocket : Gravity
             switch (_isAccelerating)
             {
                 case true when !value:
+                    // Stopped accelerating
                     fireParticleSystem.Stop();
                     break;
                 case false when value:
+                    // Started accelerating
                     fireParticleSystem.Play();
                     break;
             }
