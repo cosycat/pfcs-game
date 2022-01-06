@@ -37,6 +37,16 @@ public class ScoreTracker : MonoBehaviour
     }
     
     public float DelayedStartPerLevel => 0.5f;
+
+    public void ReloadLevel()
+    {
+        try {
+            Debug.Log("Reloading level "+SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        } catch (Exception ex) {
+            SceneManager.LoadScene(0);
+        }
+    }
     
     public void LoadNextLevel() {
         try {
@@ -165,6 +175,10 @@ public class ScoreTracker : MonoBehaviour
             if (Input.GetButtonDown("Cancel"))
             {
                 OpenMainMenu();
+            }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                ReloadLevel();
             }
         }
     }
